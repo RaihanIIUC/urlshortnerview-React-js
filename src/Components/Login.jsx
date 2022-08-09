@@ -22,16 +22,11 @@ const Login = () => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState({
-        email: '',
-        password: ''
+        "email" : "raihan@gmail.com",
+        "password" : "123456",
     });
 
-    // const loadList = async () => {
-    //     const result = await axios.get("http://localhost:8000/api/uses");
-    //     console.log(result, '=====');
-    // };
-
-    // console.log(loadList(), '=====ddd');
+ 
 
     const userData = (e, key) => {
         setUser({ ...user, [key]: e.target.value });
@@ -42,12 +37,13 @@ const Login = () => {
         e.preventDefault();
         console.log(user, 'dddddds');
         dispatch(requestLoginAction(user));
-
     };
 
 
-    const { currentUser, error } = useSelector((store) => store.userstore);
+    const { currentUser, error  , token , loggedIn } = useSelector((store) => store.userstore);
 
+
+    console.log(loggedIn, '===ddd');
 
 
     return (
@@ -71,18 +67,21 @@ const Login = () => {
                         required
                         fullWidth
                         id="email"
-                        label="Email Address"
+                        // label="Email Address"
                         name="email"
                         autoComplete="email"
+                        value={user.email}
                         onChange={(e) => userData(e, 'email')}
                         autoFocus
+                        
                     />
                     <TextField
                         margin="normal"
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        // label="Password"
+                        value={user.password}
                         type="password"
                         id="password"
                         onChange={(e) => userData(e, 'password')}

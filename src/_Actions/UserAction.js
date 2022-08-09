@@ -8,6 +8,13 @@ export const setLoginData = (user) => {
   };
 };
 
+export const setToken = (token) => {
+  return {
+    type: ActionTypes.USER_TOKEN,
+    payload: token
+  };
+};
+
 export const setLoginError = (error) => {
   return {
     type: ActionTypes.USER_LOGIN_ERROR,
@@ -15,26 +22,23 @@ export const setLoginError = (error) => {
   };
 };
 
-export const requestLoginAction = (user) => {
-  console.log(user);
+export const setUserLogOut = () => {
+  return {
+    type: ActionTypes.USER_LOG_OUT,
+  };
+};
 
+export const requestLoginAction = (user) => {
   return async (dispatch, action) => {
-    await axios
-      .post(
-        "https://www.bdappsandroid.com/urlshortnerfunction/api/login",
-        {
-          email: "raidd443@gmail.com",
-          password: "123456",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
+    await  axios.post("http://127.0.0.1:8000/api/login", {
+      "email" : user?.email,
+      "password" : user?.password
+    }, {
+      headers: {'Content-Type': 'application/json'}
+    }).then((response) => {
         dispatch(setLoginData(response.data));
-        console.log(response, "======");
+        dispatch(setToken(response.data.data.token));
+        console.log(response.data.data.token, "======");
       })
       .catch((error) => {
         dispatch(setLoginError(error));
@@ -42,3 +46,12 @@ export const requestLoginAction = (user) => {
       });
   };
 };
+
+
+export const LogOutAction = () => {
+  return async (dispatch, action) => {
+    dispatch(setUserLogOut());
+
+  }
+  
+}
