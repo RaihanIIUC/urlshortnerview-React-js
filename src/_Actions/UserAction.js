@@ -15,13 +15,23 @@ export const setLoginError = (error) => {
   };
 };
 
-export const requestLoginAction = (const first = useRef(second)) => {
+export const requestLoginAction = (user) => {
+  console.log(user);
+
   return async (dispatch, action) => {
-    const response = await axios
-      .post("https://api.twitter.com/1.1/account", {
-        email: user.email,
-        password: user.password,
-      })
+    await axios
+      .post(
+        "https://www.bdappsandroid.com/urlshortnerfunction/api/login",
+        {
+          email: "raidd443@gmail.com",
+          password: "123456",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => {
         dispatch(setLoginData(response.data));
         console.log(response, "======");

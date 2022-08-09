@@ -13,6 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Key } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestLoginAction } from '../_Actions/UserAction';
+import { useState } from 'react';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -24,13 +26,21 @@ const Login = () => {
         password: ''
     });
 
+    // const loadList = async () => {
+    //     const result = await axios.get("http://localhost:8000/api/uses");
+    //     console.log(result, '=====');
+    // };
 
-    const userData = (e, Key) => {
+    // console.log(loadList(), '=====ddd');
+
+    const userData = (e, key) => {
         setUser({ ...user, [key]: e.target.value });
     }
 
+    console.log(user, '===ddd');
     const userSubmitHandler = (e) => {
-        e.preventDeafualt();
+        e.preventDefault();
+        console.log(user, 'dddddds');
         dispatch(requestLoginAction(user));
 
     };
