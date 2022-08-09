@@ -25,7 +25,7 @@ export const requestUrlShortenerActions = (urls) => {
     return async (dispatch, getState) => {
         const { userstore } = getState();
         console.log(userstore.token, 'dddds' , urls );
-     await  axios.post("http://127.0.0.1:8000/api/url", {
+     await  axios.post(`${ActionTypes.BASE_URL}/api/url`, {
       "long_url" : `{$urls}`
     }, {
          headers: {
@@ -46,7 +46,7 @@ export const requestUrlByUser = () => {
     return async (dispatch, getState) => {
         const { userstore } = getState();
         console.log(userstore.token, 'dddds'  );
-     await  axios.get("http://127.0.0.1:8000/api/url", {
+     await  axios.get(`${ActionTypes.BASE_URL}/api/url`, {
          headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${userstore.token}`,
@@ -66,7 +66,7 @@ export const requestUrlById = (idx) => {
     return async (dispatch, getState) => {
         const { userstore } = getState();
         console.log(userstore.token, 'dddds'  );
-     await  axios.get(`http://127.0.0.1:8000/api/url/${idx}`, {
+     await  axios.get(`${ActionTypes.BASE_URL}/api/url/${idx}`, {
          headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${userstore.token}`,
@@ -85,7 +85,7 @@ export const requestIpRedirect = () => {
     return async (dispatch, getState) => {
         const { userstore } = getState();
         console.log(userstore.token, 'dddds'  );
-     await  axios.get(`http://127.0.0.1:8000/api/ip_redirection`, {
+     await  axios.get(`${ActionTypes.BASE_URL}/api/ip_redirection`, {
          headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${userstore.token}`,

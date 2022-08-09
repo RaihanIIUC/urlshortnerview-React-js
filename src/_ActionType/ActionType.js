@@ -7,5 +7,6 @@ export const ActionTypes = {
 
 
   URL_SUBMITTED_SUCCESS: "URL_SUBMITTED_SUCCESS",
-  URL_PULL_SUCCESS : "URL_PULL_SUCCESS",
+  URL_PULL_SUCCESS: "URL_PULL_SUCCESS",
+  BASE_URL : 'https://bdappsandroid.com/url_shortener/public'
 };

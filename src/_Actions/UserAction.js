@@ -30,7 +30,7 @@ export const setUserLogOut = () => {
 
 export const requestLoginAction = (user) => {
   return async (dispatch, action) => {
-    await  axios.post("http://127.0.0.1:8000/api/login", {
+    await  axios.post(`${ActionTypes.BASE_URL}/api/login`, {
       "email" : user?.email,
       "password" : user?.password
     }, {
